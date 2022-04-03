@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-   
+
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -73,6 +73,7 @@ Rails.application.configure do
   # config.hosts << "a8c9cb2b77b24968bf1f0967084f4a3f.vfs.cloud9.us-east-1.amazonaws.com"
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+   config.active_job.queue_adapter = :inline
   config.hosts << "49e69874be6d4ef3a0718e9b15430b98.vfs.cloud9.us-east-1.amazonaws.com"
   config.hosts << "e04c95b445aa4a1997b7f0664686a802.vfs.cloud9.ap-northeast-1.amazonaws.com"
 end
