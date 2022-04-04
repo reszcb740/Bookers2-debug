@@ -1,2 +1,10 @@
-@import "~bootstrap/scss/bootstrap"; 
+@import "~bootstrap/scss/bootstrap";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+#notice {
+  color: green;
+}
+
+#error_explanation {
+  color: red;
+}
