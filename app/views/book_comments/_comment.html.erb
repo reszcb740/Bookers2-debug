@@ -1,18 +1,19 @@
-<table><% books.book_cmments.each do |book.comment| %>
+<table><% book.book_comments.each do |book_comment| %>
   <tr>
-    <td><%= atttachment_imag_tag book_comment.user, :profile_image(40, 40), format: 'jpeg', fallback: "no_image.jpg" %>
-    <%= link_to user_path(book.user.id) do %><%= book_commet.user.name %><% end %></td>
+    <td><%= image_tag book_comment.user.get_profile_image(40, 40), format: 'jpeg', fallback: "no_image.jpg" %>
+    <%= link_to user_path(book.user.id) do %><%= book_comment.user.name %><% end %></td>
     <td><%= book_comment.comment %></td>
-  <% if book_comment.user == current_user %>
-     <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true, class: "btn btn-danger" %></td>
+    <% if book_comment.user == current_user %>
+    <td><%= link_to "Destroy", book_book_comments_path(book_comment.book, book_comment), method: :delete, remote: true, class: "btn btn-danger" %></td>
+    <% end %>
+    </tr>
   <% end %>
-  </tr>
-  <% end %>
+
 </table>
 
 <div class="form-group">
   <label for="newcomment">Comment</label>
-<%= from_with(model:[book, book_comment], local: true) do |f| %>
+<%= form_with(model:[book, book_comment], local: true) do |f| %>
  <%= f.text_area :comment, row: '5', placeholder: "コメントをここに", class: "form-control" %>
  <%= f.submit "送信する" %>
 <% end %>
