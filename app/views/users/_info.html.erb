@@ -10,6 +10,9 @@
   	  <th>introduction</th>
   	  <th><%= user.introduction %></th>
     </tr>
+    <tr>
+      <th><%= render 'relationships/follow_list', user: user %></th>
+    </tr>
   </tbody>
 </table>
 
