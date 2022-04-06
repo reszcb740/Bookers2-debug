@@ -11,7 +11,12 @@
   	  <th><%= user.introduction %></th>
     </tr>
     <tr>
-      <th><%= render 'relationships/follow_list', user: user %></th>
+      <th>follows</th>
+      <th><%= user.followings.count %></th>
+    </tr>
+    <tr>
+      <th>followers</th>
+      <th><%= user.followers.count %></th>
     </tr>
   </tbody>
 </table>
