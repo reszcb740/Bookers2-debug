@@ -2,16 +2,27 @@
   <table class="table">
     <thead>
       <tr>
+       <% if user.exists? %>
+        <th>image</th>
         <th>name</th>
-        <th></th>
-        <th></th>
+        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
+       <% user.each do |user| %>
       <tr>
+        <td><%= link_to user do %>
+        <%= image_tag user.get_profile_image(40, 40) %>
+        <% end %></td>
         <td><% user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
+        <td><%= link_to "show", user_path(user.id) %></td>
+       <% end %>
+       <% else %>
+       <td>ユーザーはいません</td>
+       <% end %>
       </tr>
     </tbody>
+
   </table>
