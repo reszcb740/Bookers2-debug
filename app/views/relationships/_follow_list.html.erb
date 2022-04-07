@@ -1,19 +1,17 @@
-
+ <div class='col-md-8 offset-md-1'>
   <table class="table">
     <thead>
       <tr>
-       <% if user.exists? %>
+       <% if users.exists? %>
         <th>image</th>
         <th>name</th>
-        <th colspan="3"></th>
+        <th colspan="5"></th>
       </tr>
     </thead>
     <tbody>
-       <% user.each do |user| %>
+       <% users.each do |user| %>
       <tr>
-        <td><%= link_to user do %>
-        <%= image_tag user.get_profile_image(40, 40) %>
-        <% end %></td>
+        <td><%= image_tag user.get_profile_image(40, 40), class: "attachment user profile_image fallback" %></td>
         <td><% user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
@@ -21,8 +19,8 @@
        <% end %>
        <% else %>
        <td>ユーザーはいません</td>
-       <% end %>
+      <% end %>
       </tr>
     </tbody>
-
   </table>
+ </div>
