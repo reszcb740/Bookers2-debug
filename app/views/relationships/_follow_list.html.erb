@@ -2,17 +2,17 @@
   <table class="table">
     <thead>
       <tr>
-       <% if users.exists? %>
+       <% if user.exists? %>
         <th>image</th>
         <th>name</th>
         <th colspan="5"></th>
       </tr>
     </thead>
     <tbody>
-       <% users.each do |user| %>
+       <% user.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image(40, 40), class: "attachment user profile_image fallback" %></td>
-        <td><% user.name %></td>
+        <td><%= user.name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
         <td><%= link_to "show", user_path(user.id) %></td>
