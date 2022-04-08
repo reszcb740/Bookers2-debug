@@ -1,4 +1,4 @@
-<%= from_with model: book, url: '/index', local: false do |f| %>
+<%= form_with model: book.favorites, url: '/books', local: false do |f| %>
  <% if book.favorited_by?(current_user) %>
    <%= link_to book_favorites_path(book), method: :delete, remote: true, class: 'text-danger' do %>
       <i class="fa-solid fa-heart"></i><%= book.favorites.count %>
