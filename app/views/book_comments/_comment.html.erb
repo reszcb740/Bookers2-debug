@@ -13,7 +13,7 @@
 
 <div class="form-group">
   <label for="newcomment">Comment</label>
-<%= form_with(model:[book, book_comment], local: true) do |f| %>
+<%= form_with(model:[book, book_comment], remorte: true) do |f| %>
  <%= f.text_area :comment, row: '5', placeholder: "コメントをここに", class: "form-control" %>
  <%= f.submit "送信する" %>
 <% end %>

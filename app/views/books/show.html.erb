@@ -27,7 +27,7 @@
               <% end %>
           </tr>
         </table>
-         <div id="comments-area"><%= render 'book_comments/comment', book: @book, book_comment: @book_comment %></div>
+         <div id="comments-area_<%= @book.id %>"><%= render 'book_comments/comment', book: @book, book_comment: @book_comment %></div>
       </div>
     </div>
  </div>
