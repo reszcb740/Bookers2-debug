@@ -9,9 +9,11 @@ class Book < ApplicationRecord
   validates :user_id, presence: true
   validates :star, numericality: {
     less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 0
+    greater_than_or_equal_to: 1
   }, presence: true
 
+  scope :latest, -> {order(create_at: :desc)}
+  scope :star_count, -> {order(star: :desc)}
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
