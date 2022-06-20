@@ -33,7 +33,9 @@
               score: <%= book.star %>,
             });
           </script>
-          <td><%= book.tags %></td>
+          <% book.tags.each do |tag| %>
+           <td><%= tag.name %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
