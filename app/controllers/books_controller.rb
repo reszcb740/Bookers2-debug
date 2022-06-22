@@ -8,8 +8,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    params[:book][:name].present?
-      tag_list = params[:book][:name].split(/[[:blank:]]/)
+    tag_list = params[:book][:name].split(nil)
     if @book.save
       @book.save_tags(tag_list)
       redirect_to book_path(@book), notice: "You have created book successfully."
@@ -25,6 +24,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+    @book_tags = @book.tags
 
   end
 
@@ -40,7 +40,7 @@ class BooksController < ApplicationController
     end
     @book = Book.new
     @user = current_user
-    @tags = Tag.all
+    @tag_list = Tag.all
   end
 
   def edit
@@ -73,9 +73,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body, :star)
   end
 
-  def tag_params
-    params.require(:book).permit(:name)
-  end
+
 
   def ensure_correct_user
     @book = Book.find(params[:id])

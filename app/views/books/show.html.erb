@@ -18,7 +18,7 @@
             <td><%= link_to @book.title, book_path(@book.id) %></td>
             <td><%= @book.body %></td>
             <% @book.tags.each do |tag| %>
-             <td><%= @tag.name %></td>
+             <td><%= @book.tags.name %></td>
             <% end %>
             <td class="favorite-btn_<%= @book.id %>">
              <%= render 'favorites/favorite-btn', book: @book %>

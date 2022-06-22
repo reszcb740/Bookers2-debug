@@ -20,6 +20,9 @@
            <%= render 'favorites/favorite-btn', book: book %>
           </td>
           <td>コメント数: <%= book.book_comments.count %></td>
+          <% book.tags.each do |tag| %>
+           <td><%= book.tags.name %></td>
+          <% end %>
           <td id="star-rate-<%= book.id %>"></td>
           <script>
           　$('#star-rate-<%= book.id %>').empty();
@@ -33,9 +36,6 @@
               score: <%= book.star %>,
             });
           </script>
-          <% book.tags.each do |tag| %>
-           <td><%= tag.name %></td>
-          <% end %>
         </tr>
       <% end %>
     </tbody>
