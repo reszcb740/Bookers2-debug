@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
     resource :tags, only: [:create, :destroy]
+    get :search, on: :collection
   end
   resources :users, only: [:index, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]

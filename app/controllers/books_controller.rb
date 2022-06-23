@@ -38,6 +38,11 @@ class BooksController < ApplicationController
     else
      @books = Book.all
     end
+    if params[:tag]
+      @tags = Tag.search_by_name(params[:tag][:name])
+    else
+      @tags = Tag.all
+    end
     @book = Book.new
     @user = current_user
     @tag_list = Tag.all
