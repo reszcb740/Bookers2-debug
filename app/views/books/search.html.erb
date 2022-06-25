@@ -10,14 +10,33 @@
       </tr>
    </thead>
    <tbody>
-     <% @books.each do |book| %>
+     <% book.each do |book| %>
        <tr>
          <td><%= link_to book.user do %>
             <%= image_tag book.user.get_profile_image(40, 40) %>
             <% end %></td>
          <td><%= link_to book.title, books_path %></td>
          <td><%= book.body %></td>
-         <td><%= tag.name %></td>
+         <% book.tags.each do |tag| %>
+           <td><%= tag.name %></td>
+          <% end %>
+         <td class="favorite-btn_<%= book.id %>">
+           <%= render 'favorites/favorite-btn', book: book %>
+          </td>
+          <td>コメント数: <%= book.book_comments.count %></td>
+          <td id="star-rate-<%= book.id %>"></td>
+          <script>
+          　$('#star-rate-<%= book.id %>').empty();
+            $('#star-rate-<%= book.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= book.star %>,
+            });
+          </script>
        </tr>
      <% end %>
    </tbody>
