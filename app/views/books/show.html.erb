@@ -7,6 +7,12 @@
         <%= render 'books/form', book: @book_new %>
       </div>
       <div class="col-md-8 offset-md-1">
+    		<div class="d-flex align-items-center justify-content-center">
+          <%= form_with url: search_books_path, local: true, method: :get do |f| %>
+           <%= f.text_field :name %>
+           <%= f.submit "タグ検索", class: "btn btn-primary" %>
+          <% end %>
+        </div>
     		<h2>Book detail</h2>
     	  <table class="table">
            <tr>
@@ -18,7 +24,7 @@
             <td><%= link_to @book.title, book_path(@book.id) %></td>
             <td><%= @book.body %></td>
             <% @book.tags.each do |tag| %>
-             <td><%= @book.tags.name %></td>
+             <td><%= tag.name %></td>
             <% end %>
             <td class="favorite-btn_<%= @book.id %>">
              <%= render 'favorites/favorite-btn', book: @book %>

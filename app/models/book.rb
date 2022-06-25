@@ -13,7 +13,7 @@ class Book < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
   }, presence: true
-
+  scope :search_by_name, ->(search){where(['name LIKE?', "#%{search}%"])}
   scope :latest, -> {order(create_at: :desc)}
   scope :star_count, -> {order(star: :desc)}
   def get_profile_image(width, height)
@@ -55,4 +55,5 @@ class Book < ApplicationRecord
       self.book_tags << new_book_tag
     end
   end
+
 end
