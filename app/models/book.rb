@@ -42,18 +42,29 @@ class Book < ApplicationRecord
     end
   end
 
-  def save_tags(sent_tags)
+  def save_tags(sevebok_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
+    old_tags = current_tags - sevebook_tags
+    new_tags = sevebook_tags - current_tags
 
-    old_tags.each do |old|
-      self.book_tags.delete BookTag.find_by(name: old)
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old)
     end
-    new_tags.each do |new|
-      new_book_tag = BookTag.find_or_create_by(name: new)
-      self.book_tags << new_book_tag
+    new_tags.each do |new_name|
+      book_tag = Tag.find_or_create_by(name: new_name)
+      self.tags << book_tag
     end
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Book.where(title: content)
+    elsif method == 'forward'
+      Book.where('title LIKE?', content+'%')
+    elsif method == 'backward'
+      Book.where('title LIKE?', '%'+content)
+    else
+      Book.where('title LIKE?', '%'+content+'%')
+    end
+  end
 end

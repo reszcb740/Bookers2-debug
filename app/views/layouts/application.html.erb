@@ -10,8 +10,11 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <div class="container">
      <div class="d-flex align-items-center justify-content-center">
-      <%= render 'searches/search' %>
+      <div class="mr-3"><%= render 'searches/search' %></div>
+      <div class="mr-3"><%= render "searches/tag_form" %></div>
+    </div>
 
      </div>
       <main>
